@@ -1,0 +1,309 @@
+:root {
+  --ods6: #26bde2;
+  --ods7: #fcc30b;
+  --forest: #087c98;
+  --forest-2: #09677f;
+  --ink: #173740;
+  --line: #dce8eb;
+  --lime: #fcc30b;
+  --blue: #26bde2;
+  --gold: #fcc30b;
+  color: #173740;
+  background: #f3f8f9;
+}
+
+body {
+  color: #173740;
+  background: #f3f8f9;
+}
+
+.auth-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 44px;
+  text-align: center;
+  color: #173740;
+  background: linear-gradient(145deg, #f8fcfd 0%, #eaf6f8 60%, #fff9e9 100%);
+}
+
+.auth-art::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--ods6) 0 50%, var(--ods7) 50% 100%);
+}
+
+.auth-art::after {
+  display: none;
+}
+
+.brand-presentation {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 430px);
+}
+
+.brand-symbols {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 72px;
+  margin: 0 auto 25px;
+}
+
+.brand-water-symbol {
+  display: block;
+  width: 52px;
+  height: 72px;
+  background-color: #087c98;
+  -webkit-mask: url("assets/ods-6-water.png") center / contain no-repeat;
+  mask: url("assets/ods-6-water.png") center / contain no-repeat;
+}
+
+.brand-energy-symbol {
+  display: block;
+  width: 66px;
+  height: 66px;
+  background-color: #b77800;
+  -webkit-mask: url("assets/ods-7-sun.png") center / contain no-repeat;
+  mask: url("assets/ods-7-sun.png") center / contain no-repeat;
+}
+
+.brand-title {
+  margin: 0;
+  color: #173740;
+  font: 800 36px/1.1 Manrope, sans-serif;
+}
+
+.brand-tagline {
+  color: rgba(23, 55, 64, 0.76);
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 12px auto 0;
+}
+
+.ods-support {
+  border-top: 1px solid rgba(23, 55, 64, 0.16);
+  margin-top: 42px;
+  padding-top: 20px;
+}
+
+.ods-caption {
+  color: #4d6971;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.ods-goals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.ods-goal {
+  margin: 0;
+  padding-left: 11px;
+  border-left: 3px solid var(--ods6);
+  text-align: left;
+}
+
+.ods-goal-7 {
+  border-color: var(--ods7);
+}
+
+.ods-goal-label {
+  display: block;
+  color: #087c98;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.ods-goal-7 .ods-goal-label {
+  color: #9d6900;
+}
+
+.ods-goal-name {
+  display: block;
+  color: #173740;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+.sdg-credit a {
+  color: #087c98;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.brand-mark,
+.sidebar .brand-mark {
+  color: #173740;
+  background: var(--ods7);
+}
+
+.sidebar {
+  background: #075d75;
+}
+
+.nav-glyph {
+  color: #9de5f4;
+}
+
+.nav-item.active {
+  background: rgba(38, 189, 226, 0.18);
+  box-shadow: inset 3px 0 var(--ods7);
+}
+
+.nav-item:hover {
+  background: rgba(38, 189, 226, 0.13);
+}
+
+.button-primary {
+  color: #123942;
+  background: var(--ods6);
+}
+
+.button-primary:hover {
+  background: #16acd2;
+}
+
+.text-input:focus {
+  border-color: #0785a2;
+  box-shadow: 0 0 0 3px rgba(38, 189, 226, 0.18);
+}
+
+.metric-featured {
+  background: #fff7d8;
+  border-color: #f1dc8e;
+}
+
+.energy-index {
+  color: #9a7200;
+}
+
+.water-index {
+  color: #087c98;
+}
+
+.goal-track span {
+  background: var(--ods6);
+}
+
+.tip-panel {
+  background: #e3f5f8;
+  border-color: #cdebf1;
+}
+
+.tip-panel .eyebrow {
+  color: #087c98;
+}
+
+.estimate-panel {
+  color: #263d32;
+  background: #fff1bd;
+}
+
+.estimate-panel .eyebrow {
+  color: #846300;
+}
+
+.estimate-panel > span,
+.estimate-panel .tiny-note {
+  color: #645a36;
+}
+
+.estimate-divider {
+  background: rgba(81, 69, 28, 0.2);
+}
+
+.article-green {
+  background: #e1f4f7;
+}
+
+.article-blue {
+  background: #cceef5;
+}
+
+.article-yellow {
+  background: #fff4ca;
+}
+
+.article-tag {
+  color: #176f84;
+}
+
+.profile-pill,
+.status-dot {
+  background: #def3f7;
+  color: #096b80;
+}
+
+.mobile-nav button.active {
+  color: #087c98;
+  box-shadow: inset 0 2px var(--ods6);
+}
+
+@media (max-width: 720px) {
+  .auth-art {
+    min-height: 340px;
+    height: auto;
+    padding: 38px 22px 42px;
+  }
+
+  .brand-symbols {
+    height: 60px;
+    margin-bottom: 20px;
+  }
+
+  .brand-water-symbol {
+    width: 43px;
+    height: 60px;
+  }
+
+  .brand-energy-symbol {
+    width: 56px;
+    height: 56px;
+  }
+
+  .brand-title {
+    font-size: 27px;
+  }
+
+  .brand-tagline {
+    font-size: 13px;
+  }
+
+  .ods-support {
+    margin-top: 30px;
+    padding-top: 17px;
+  }
+
+  .ods-caption {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ods-goals {
+    gap: 10px;
+  }
+
+  .ods-goal-name {
+    font-size: 11px;
+  }
+
+  .sdg-credit {
+    max-width: 100%;
+  }
+}
+
+:focus-visible {
+  outline-color: #087c98 !important;
+}

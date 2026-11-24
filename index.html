@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087c98">
+  <meta name="description" content="Acompanhe e reduza o consumo de água e energia da sua casa ou pequeno negócio.">
+  <title>EcoComunidade | Consumo consciente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ods-theme.css">
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <section class="auth-view" id="auth-view" aria-labelledby="auth-title">
+    <div class="auth-art">
+      <div class="brand-presentation">
+        <div class="brand-symbols" role="img" aria-label="Símbolos oficiais de água e energia dos ODS 6 e 7">
+          <span class="brand-water-symbol" aria-hidden="true"></span>
+          <span class="brand-energy-symbol" aria-hidden="true"></span>
+        </div>
+        <h2 class="brand-title">EcoComunidade</h2>
+        <p class="brand-tagline">Consumo consciente de água e energia</p>
+        <section class="ods-support" aria-label="Objetivos de Desenvolvimento Sustentável apoiados">
+          <p class="ods-caption">Contribui para os Objetivos de Desenvolvimento Sustentável</p>
+          <div class="ods-goals">
+            <p class="ods-goal ods-goal-6"><span class="ods-goal-label">ODS 6</span><span class="ods-goal-name">Água potável e saneamento</span></p>
+            <p class="ods-goal ods-goal-7"><span class="ods-goal-label">ODS 7</span><span class="ods-goal-name">Energia limpa e acessível</span></p>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="auth-main">
+      <div class="auth-card">
+        <p class="eyebrow">SEU CONSUMO, SUAS ESCOLHAS</p>
+        <h1 id="auth-title">Bem-vindo de volta</h1>
+        <p class="auth-intro">Entre para acompanhar seus indicadores de água e energia.</p>
+        <div class="auth-tabs" role="tablist" aria-label="Acesso à conta">
+          <button type="button" class="auth-tab selected" id="tab-login" role="tab" aria-selected="true">Entrar</button>
+          <button type="button" class="auth-tab" id="tab-signup" role="tab" aria-selected="false">Criar conta</button>
+        </div>
+        <form id="auth-form">
+          <label class="field-label" for="auth-email">E-mail</label>
+          <input class="text-input" id="auth-email" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+          <label class="field-label" for="auth-password">Senha</label>
+          <input class="text-input" id="auth-password" name="password" type="password" autocomplete="current-password" placeholder="Mínimo de 6 caracteres" minlength="6" required>
+          <label class="field-label signup-only" for="auth-name">Como podemos chamar você?</label>
+          <input class="text-input signup-only" id="auth-name" name="name" autocomplete="name" placeholder="Seu nome">
+          <label class="field-label signup-only" for="auth-kind">Seu perfil</label>
+          <select class="text-input signup-only" id="auth-kind" name="kind">
+            <option value="residencia">Residência</option><option value="comercio">Pequeno comércio</option>
+          </select>
+          <button class="button button-primary auth-submit" id="auth-submit" type="submit">Entrar na minha conta</button>
+          <button class="text-button" id="reset-password" type="button">Esqueci minha senha</button>
+          <p class="form-message" id="auth-message" role="status" aria-live="polite"></p>
+        </form>
+        <div class="setup-notice" id="setup-notice" hidden>
+          <strong>Falta conectar o banco de dados</strong>
+          <p>Preencha <code>config.js</code> com a URL e a chave pública (anon) do projeto Supabase e execute <code>supabase/schema.sql</code>. Os passos estão no README.</p>
+        </div>
+      </div>
+      <p class="privacy-note">Seus registros são privados e protegidos por conta.</p>
+      <p class="sdg-credit"><a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer">Objetivos de Desenvolvimento Sustentável da ONU</a>. O EcoComunidade é independente e não representa oficialmente a ONU.</p>
+    </div>
+  </section>
+
+  <div class="app-view" id="app-view" hidden>
+    <aside class="sidebar">
+      <a class="wordmark" href="#dashboard"><span class="brand-mark">E</span> EcoComunidade</a>
+      <p class="nav-caption">ACOMPANHAMENTO</p>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-glyph">01</span> Visão geral</button>
+        <button class="nav-item" data-page="energia"><span class="nav-glyph">02</span> Energia</button>
+        <button class="nav-item" data-page="agua"><span class="nav-glyph">03</span> Água e hidrômetro</button>
+        <button class="nav-item" data-page="comunidade"><span class="nav-glyph">04</span> Aprender e compartilhar</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="account-mini"><span class="avatar" id="avatar-initial">E</span><span class="account-email" id="account-email">Conta</span></div>
+        <button class="nav-item signout" id="signout"><span class="nav-glyph">↗</span> Sair da conta</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow" id="today-label">SEU ESPAÇO</p><p class="welcome-line">Olá, <strong id="welcome-name">você</strong></p></div><span class="profile-pill" id="profile-kind">Residência</span></header>
+
+      <section class="page active" id="page-dashboard" aria-labelledby="dashboard-title">
+        <div class="page-heading"><div><p class="eyebrow">SEU RESUMO</p><h1 id="dashboard-title">Visão geral</h1><p class="page-description">Uma leitura simples do impacto mensal estimado.</p></div><button class="button button-secondary" data-go="energia">+ Adicionar aparelho</button></div>
+        <div class="summary-grid">
+          <article class="metric metric-featured"><p class="metric-label">Custo mensal estimado</p><strong class="metric-value" id="total-cost">R$ 0,00</strong><p class="metric-note">Energia e água combinadas</p><div class="metric-rule"></div><div class="metric-split"><span>Energia <b id="dash-energy-cost">R$ 0,00</b></span><span>Água <b id="dash-water-cost">R$ 0,00</b></span></div></article>
+          <article class="metric"><span class="metric-index energy-index">01 / ENERGIA</span><p class="metric-label">Consumo mensal</p><strong class="metric-value" id="dash-kwh">0 kWh</strong><p class="metric-note" id="dash-appliances">Nenhum aparelho cadastrado</p><a class="inline-link" href="#energia" data-go="energia">Ver simulador <span>→</span></a></article>
+          <article class="metric"><span class="metric-index water-index">02 / ÁGUA</span><p class="metric-label">Volume estimado no mês</p><strong class="metric-value" id="dash-liters">0 L</strong><p class="metric-note" id="dash-water-source">Registre suas atividades</p><a class="inline-link" href="#agua" data-go="agua">Ver controle de água <span>→</span></a></article>
+        </div>
+        <div class="dashboard-lower">
+          <section class="content-panel goal-panel"><div class="panel-heading"><div><p class="eyebrow">META PESSOAL</p><h2>Reduzir é um hábito</h2></div><span class="status-dot">Acompanhe</span></div><p class="body-copy">Comece registrando seus aparelhos e leituras. Com uma linha de base, fica mais fácil perceber mudanças reais ao longo do tempo.</p><div class="goal-track"><span></span></div><p class="tiny-note">Seus dados ficam associados somente à sua conta.</p></section>
+          <section class="content-panel tip-panel"><p class="eyebrow">DICA DE HOJE · ENERGIA</p><h2>Banho mais curto, impacto menor.</h2><p class="body-copy">Reduzir o banho em alguns minutos diminui o uso de água e, quando o chuveiro é elétrico, também o consumo de energia.</p><button class="text-button" data-go="comunidade">Mais ideias práticas <span>→</span></button></section>
+        </div>
+        <section class="content-panel recent-panel"><div class="panel-heading"><div><p class="eyebrow">ATIVIDADE RECENTE</p><h2>Últimos registros do hidrômetro</h2></div><button class="text-button" data-go="agua">Ver todos →</button></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Data</th><th>Leitura</th><th>Variação</th></tr></thead><tbody id="recent-readings"><tr><td class="empty-cell" colspan="3">Nenhuma leitura cadastrada.</td></tr></tbody></table></div></section>
+      </section>
+
+      <section class="page" id="page-energia" aria-labelledby="energia-title">
+        <div class="page-heading"><div><p class="eyebrow">ODS 7 · ENERGIA LIMPA E ACESSÍVEL</p><h1 id="energia-title">Simulador de energia</h1><p class="page-description">Estime o consumo mensal e o custo por aparelho.</p></div></div>
+        <div class="module-grid">
+          <section class="content-panel"><div class="panel-heading"><div><p class="eyebrow">NOVO APARELHO</p><h2>Adicionar à estimativa</h2></div></div>
+            <form id="appliance-form" class="stack-form">
+              <div class="field-row"><div><label class="field-label" for="device-name">Aparelho</label><select class="text-input" id="device-name" required><option value="">Escolha ou personalize</option><option>Chuveiro elétrico</option><option>Geladeira</option><option>Ar-condicionado</option><option>Televisão</option><option>Máquina de lavar</option><option>Freezer comercial</option><option>Lâmpadas</option><option value="outro">Outro</option></select></div><div class="custom-device-wrap" hidden><label class="field-label" for="custom-device">Nome personalizado</label><input class="text-input" id="custom-device" maxlength="80" placeholder="Ex.: computador"></div></div>
+              <div class="field-row"><div><label class="field-label" for="device-watts">Potência (W)</label><input class="text-input" id="device-watts" type="number" min="1" max="100000" step="1" placeholder="Ex.: 1500" required></div><div><label class="field-label" for="device-hours">Horas por dia</label><input class="text-input" id="device-hours" type="number" min="0.1" max="24" step="0.1" value="1" required></div></div>
+              <div class="field-row"><div><label class="field-label" for="device-days">Dias de uso no mês</label><input class="text-input" id="device-days" type="number" min="1" max="31" value="30" required></div><div><label class="field-label" for="energy-tariff">Tarifa (R$/kWh)</label><input class="text-input" id="energy-tariff" type="number" min="0" max="100" step="0.01" value="0.75" required></div></div>
+              <p class="calculator-hint">Consumo = potência × horas × dias ÷ 1.000</p><button class="button button-primary" type="submit">Salvar aparelho</button><p class="form-message" id="appliance-message" role="status"></p>
+            </form>
+          </section>
+          <aside class="estimate-panel"><p class="eyebrow">ESTIMATIVA DO MÊS</p><strong id="energy-estimate-kwh">0 kWh</strong><span>Consumo estimado</span><div class="estimate-divider"></div><strong id="energy-estimate-cost">R$ 0,00</strong><span>Custo estimado</span><p class="tiny-note">Valores aproximados. A tarifa final pode incluir impostos, bandeiras e cobranças locais.</p></aside>
+        </div>
+        <section class="content-panel list-panel"><div class="panel-heading"><div><p class="eyebrow">SEUS APARELHOS</p><h2>Estimativa por equipamento</h2></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Aparelho</th><th>Potência</th><th>Uso diário</th><th>Consumo/mês</th><th>Custo/mês</th><th></th></tr></thead><tbody id="appliance-list"><tr><td colspan="6" class="empty-cell">Nenhum aparelho cadastrado.</td></tr></tbody></table></div></section>
+        <section class="content-panel recommendation"><p class="eyebrow">IDEIA PARA ECONOMIZAR</p><h2>Observe primeiro os aparelhos de maior consumo.</h2><p class="body-copy">Compare potência e tempo de uso. Manutenção em dia e substituição gradual por modelos eficientes podem ajudar, mas o resultado depende da rotina de cada espaço.</p></section>
+      </section>
+
+      <section class="page" id="page-agua" aria-labelledby="agua-title">
+        <div class="page-heading"><div><p class="eyebrow">ODS 6 · ÁGUA POTÁVEL E SANEAMENTO</p><h1 id="agua-title">Água e hidrômetro</h1><p class="page-description">Registre atividades e acompanhe a variação das leituras.</p></div></div>
+        <div class="module-grid water-module">
+          <section class="content-panel"><div class="panel-heading"><div><p class="eyebrow">CALCULADORA DE ATIVIDADE</p><h2>Estime seu uso de água</h2></div></div>
+            <form id="activity-form" class="stack-form">
+              <div><label class="field-label" for="activity-type">Atividade</label><select class="text-input" id="activity-type"><option value="banho">Banho</option><option value="lavagem">Máquina de lavar</option><option value="calcada">Lavagem de quintal ou calçada</option><option value="veiculo">Lavagem de veículo</option><option value="outros">Outra atividade</option></select></div>
+              <div class="custom-activity-wrap" id="custom-activity-wrap" hidden><label class="field-label" for="custom-activity">Nome da atividade</label><input class="text-input" id="custom-activity" maxlength="80" placeholder="Ex.: irrigação do jardim"></div>
+              <div class="field-row"><div><label class="field-label" for="activity-amount">Vazão (L/min)</label><input class="text-input" id="activity-amount" type="number" min="0.1" max="100000" step="0.1" value="9" required></div><div class="activity-unit"><label class="field-label" for="activity-count">Banhos por semana, por pessoa</label><input class="text-input" id="activity-count" type="number" min="0.1" max="500" step="0.1" value="7" required></div></div>
+              <div class="field-row" id="bath-details"><div><label class="field-label" for="bath-minutes">Minutos por banho</label><input class="text-input" id="bath-minutes" type="number" min="1" max="180" step="1" value="10" required></div><div><label class="field-label" for="bath-people">Pessoas</label><input class="text-input" id="bath-people" type="number" min="1" max="100" step="1" value="1" required></div></div>
+              <div class="field-row"><div><label class="field-label" for="activity-tariff">Tarifa de água (R$/m³)</label><input class="text-input" id="activity-tariff" type="number" min="0" max="10000" step="0.01" value="6.50" required></div><div><label class="field-label" for="activity-date">Data inicial</label><input class="text-input" id="activity-date" type="date" required></div></div>
+              <p class="calculator-hint" id="activity-hint">Informe a vazão, a duração do banho, o número de pessoas e a frequência semanal.</p><button class="button button-primary" type="submit">Registrar atividade</button><p class="form-message" id="activity-message" role="status"></p>
+            </form>
+          </section>
+          <section class="content-panel"><div class="panel-heading"><div><p class="eyebrow">HIDRÔMETRO</p><h2>Nova leitura</h2></div></div>
+            <form id="reading-form" class="stack-form">
+              <div><label class="field-label" for="reading-date">Data da leitura</label><input class="text-input" id="reading-date" type="date" required></div>
+              <div><label class="field-label" for="reading-value">Valor do medidor (m³)</label><input class="text-input" id="reading-value" type="number" min="0" max="100000000" step="0.001" placeholder="Ex.: 142,500" required></div>
+              <p class="calculator-hint">Registre as leituras em ordem. A diferença entre elas indica o consumo no período.</p><button class="button button-primary" type="submit">Salvar leitura</button><p class="form-message" id="reading-message" role="status"></p>
+            </form>
+          </section>
+        </div>
+        <div class="summary-grid water-metrics"><article class="metric"><span class="metric-index water-index">ATIVIDADES</span><p class="metric-label">Volume mensal estimado</p><strong class="metric-value" id="activity-month-liters">0 L</strong><p class="metric-note">A partir das atividades registradas</p></article><article class="metric"><span class="metric-index water-index">ATIVIDADES</span><p class="metric-label">Custo mensal estimado</p><strong class="metric-value" id="activity-month-cost">R$ 0,00</strong><p class="metric-note">Tarifas individuais informadas</p></article></div>
+        <section class="content-panel list-panel"><div class="panel-heading"><div><p class="eyebrow">HISTÓRICO</p><h2>Leituras do hidrômetro</h2></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Data</th><th>Leitura (m³)</th><th>Consumo desde a leitura anterior</th><th></th></tr></thead><tbody id="reading-list"><tr><td colspan="4" class="empty-cell">Nenhuma leitura cadastrada.</td></tr></tbody></table></div></section>
+        <section class="content-panel list-panel"><div class="panel-heading"><div><p class="eyebrow">ROTINA</p><h2>Atividades registradas</h2></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Atividade</th><th>Volume por vez</th><th>Frequência semanal</th><th>Estimativa mensal</th><th></th></tr></thead><tbody id="activity-list"><tr><td colspan="5" class="empty-cell">Nenhuma atividade registrada.</td></tr></tbody></table></div></section>
+      </section>
+
+      <section class="page" id="page-comunidade" aria-labelledby="comunidade-title">
+        <div class="page-heading"><div><p class="eyebrow">CONHECIMENTO QUE CIRCULA</p><h1 id="comunidade-title">Aprender e compartilhar</h1><p class="page-description">Informação prática para fazer escolhas melhores, juntos.</p></div></div>
+        <div class="learning-grid">
+          <article class="learning-article article-green"><span class="article-tag">ODS 6 · ÁGUA</span><span class="article-number">01</span><h2>Encontre sinais de vazamento</h2><p>Feche torneiras e equipamentos que usam água. Observe o hidrômetro; se continuar avançando, pode haver consumo não identificado. Confira instalações e procure um profissional quando necessário.</p></article>
+          <article class="learning-article article-blue"><span class="article-tag">ODS 7 · ENERGIA</span><span class="article-number">02</span><h2>Entenda a etiqueta de eficiência</h2><p>Ao comparar aparelhos, consulte a etiqueta de eficiência energética e considere o consumo informado, a capacidade e o uso esperado. Um aparelho adequado à necessidade pode evitar desperdício.</p></article>
+          <article class="learning-article article-yellow"><span class="article-tag">HÁBITOS · CASA</span><span class="article-number">03</span><h2>Planeje o uso da máquina</h2><p>Use a máquina de lavar com carga adequada à recomendação do fabricante e escolha o ciclo certo. Evite repetir lavagens quando não forem necessárias.</p></article>
+        </div>
+        <section class="content-panel mural"><div class="panel-heading"><div><p class="eyebrow">MURAL COMUNITÁRIO</p><h2>Uma boa prática que funciona por aí?</h2></div></div><form id="tip-form" class="tip-form"><label class="sr-only" for="tip-text">Compartilhe uma dica sustentável</label><textarea class="text-input" id="tip-text" rows="3" maxlength="400" placeholder="Conte uma dica de economia para a comunidade (até 400 caracteres)" required></textarea><div class="tip-form-bottom"><span class="tiny-note">Sem endereço, telefone ou dados pessoais no texto.</span><button class="button button-primary" type="submit">Publicar dica</button></div><p class="form-message" id="tip-message" role="status"></p></form><div class="community-list" id="community-list"><p class="empty-cell">As dicas da comunidade aparecerão aqui.</p></div></section>
+      </section>
+      <footer class="app-footer"><span>EcoComunidade</span><span>Estimativas educativas, não substituem a fatura.</span><p class="sdg-credit"><a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer">Objetivos de Desenvolvimento Sustentável da ONU</a>. O EcoComunidade é independente e não representa oficialmente a ONU.</p></footer>
+    </main>
+    <nav class="mobile-nav" aria-label="Navegação móvel"><button class="active" data-page="dashboard">Resumo</button><button data-page="energia">Energia</button><button data-page="agua">Água</button><button data-page="comunidade">Comunidade</button></nav>
+  </div>
+</body>
+</html>
